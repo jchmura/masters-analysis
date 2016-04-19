@@ -153,3 +153,8 @@ fabric.properties
 ### Data
 *.root
 *.h5
+
+### Analysis output
+analysis/pairplots
+analysis/correlations.png
+analysis/correlations.pdf
