@@ -5,7 +5,7 @@ from collections import defaultdict
 import numpy as np
 import pandas as pd
 
-from analysis.tables_utils import Columns
+from ..tables_utils import Columns
 
 
 def _get_table(hdf5_file, table_name):

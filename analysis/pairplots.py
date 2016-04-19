@@ -1,11 +1,11 @@
 import argparse
-import os
+from pathlib import Path
 
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from tables_utils import group_by_type
+from .tables_utils import group_by_type
 
 
 def main():
@@ -16,9 +16,11 @@ def main():
 
     args = parser.parse_args()
 
-    dirname = 'pairplots'
-    if not os.path.exists(dirname):
-        os.makedirs(dirname)
+    script_dir = Path(__file__).resolve().parent
+    output_dir = script_dir / 'pairplots'
+
+    if not output_dir.exists():
+        output_dir.mkdir()
 
     hdf5_file = args.hdf5_file.name
     hdf = pd.HDFStore(hdf5_file)
@@ -46,9 +48,9 @@ def main():
             if x == y:
                 continue
 
-            dir = os.path.join(dirname, x)
-            if not os.path.exists(dir):
-                os.makedirs(dir)
+            dir = output_dir / x
+            if not dir.exists():
+                dir.mkdir()
 
             fig, ax = plt.subplots()
             sizes = [6, 4, 3]
